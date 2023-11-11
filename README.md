@@ -160,9 +160,9 @@ class ShopCard extends StatelessWidget {
 }
 ```
 
-</details open>
+</details>
 
-<details>
+<details open>
 <summary> Assignment 8 </summary>
 
 # Assignment 8
