@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
-
-class ShopItem {
-    final String name;
-    final IconData icon;
-    final Color cardColor;
-
-    ShopItem(this.name, this.icon, this.cardColor);
-}
+import 'package:inventory/widgets/left_drawer.dart';
+import 'package:inventory/widgets/item_card.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   final List<ShopItem> items = [
-      ShopItem("View Items", Icons.checklist ,Colors.indigo),
-      ShopItem("Add Item", Icons.add_shopping_cart,Colors.deepPurple),
-      ShopItem("Logout", Icons.logout, Colors.deepOrangeAccent),
-   ];
+    ShopItem("View Items", Icons.checklist, Colors.indigo),
+    ShopItem("Add Item", Icons.add_shopping_cart, Colors.deepPurple),
+    ShopItem("Logout", Icons.logout, Colors.deepOrangeAccent),
+  ];
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -30,10 +24,12 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Inventory', style: TextStyle(color:Colors.white),
+          'Inventory',
         ),
-
+        backgroundColor: Colors.indigo,
+        foregroundColor: Colors.white,
       ),
+      drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         // Scrolling wrapper widget
         child: Padding(
@@ -73,49 +69,4 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
-}
-
-class ShopCard extends StatelessWidget {
-    final ShopItem item;
-
-    const ShopCard(this.item, {super.key}); // Constructor
-
-    @override
-    Widget build(BuildContext context) {
-      return Material(
-        color: item.cardColor,
-        child: InkWell(
-          // Responsive touch area
-          onTap: () {
-            // Show a SnackBar when clicked
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(SnackBar(
-                  content: Text("You pressed the ${item.name} button!")));
-          },
-          child: Container(
-            // Container to hold Icon and Text
-            padding: const EdgeInsets.all(8),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    item.icon,
-                    color: Colors.white,
-                    size: 30.0,
-                  ),
-                  const Padding(padding: EdgeInsets.all(3)),
-                  Text(
-                    item.name,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-    }
 }
