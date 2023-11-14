@@ -13,6 +13,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
   String _name = "";
   int _amount = 0;
   String _description = "";
+  String _category = "";
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +106,29 @@ class _ShopFormPageState extends State<ShopFormPage> {
                     },
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Category",
+                      labelText: "Category",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+                    onChanged: (String? value) {
+                      setState(() {
+                        _category = value!;
+                      });
+                    },
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return "Category cannot be empty!";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
@@ -129,6 +153,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
                                       Text('Name: $_name'),
                                       Text('Item: $_amount'),
                                       Text('Description: $_description'),
+                                      Text('Category: $_category'),
                                     ],
                                   ),
                                 ),
