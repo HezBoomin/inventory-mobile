@@ -87,7 +87,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // Send registration request to Django backend
                 final response = await http.post(
-                  Uri.parse('http://127.0.0.1:8000/auth/register/'),
+                  Uri.parse(
+                      'https://hezekial-octora-tugas.pbp.cs.ui.ac.id/auth/register/'),
                   body: {
                     'username': username,
                     'password': password,
